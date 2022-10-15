@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import ArrowFrameBlue from '../../assets/images/ArrowFrameBlue.png'
+import ArrowFrameBlue from '../../../assets/images/ArrowFrameBlue.png'
 
 const WrapperImage = styled.div`
 display: flex;

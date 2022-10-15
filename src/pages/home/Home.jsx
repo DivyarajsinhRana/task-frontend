@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import Button from "../../components/button/Button";
-import Title from "../../components/title/Title";
-import Wrapper from "../../components/wrapper/Wrapper";
+import Button from "../../components/stylescomponents/button/Button"
+import Title from "../../components/stylescomponents/title/Title";
+import Wrapper from "../../components/stylescomponents/wrapper/Wrapper";
 
 const Home = () => {
     const navigate = useNavigate();

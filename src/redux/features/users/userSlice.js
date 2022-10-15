@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllPosts, getAllUsers } from "./userCrud";
+import { getAllUsers } from "./userCrud";
 
 export const fetchAllUsers = createAsyncThunk(
     "users/fetchAllUsers",

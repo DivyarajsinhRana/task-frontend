@@ -1,13 +1,19 @@
+import StyledTd from "../stylescomponents/table/StyledTd";
+import StyledTh from "../stylescomponents/table/StyledTh";
+import StyledTable from "../stylescomponents/table/Table";
+import TableBodyRow from "../stylescomponents/table/tableBodyRow";
+import TableHeadRow from "../stylescomponents/table/tableHeadRow";
+import TableWrapper from "../stylescomponents/table/tablewrapper/TableWrapper";
 
-const TableV2 = ({
+const Table = ({
     tableheading,
     tabledata,
 }) => {
     return (
-        <div>
-            <table cellSpacing={0}>
+        <TableWrapper>
+            <StyledTable cellSpacing={0}>
                 <thead>
-                    <tr>
+                    <TableHeadRow>
                         {tableheading &&
                             tableheading.map((item, index) => (
                                 <TableHead
@@ -15,7 +21,7 @@ const TableV2 = ({
                                     key={index}
                                 />
                             ))}
-                    </tr>
+                    </TableHeadRow>
                 </thead>
                 <tbody>
                     {tabledata &&
@@ -27,17 +33,17 @@ const TableV2 = ({
                             />
                         ))}
                 </tbody>
-            </table>
-        </div>
+            </StyledTable>
+        </TableWrapper>
     );
 };
-export default TableV2;
+export default Table;
 export const TableHead = ({ item }) => {
     return (
         <>
-            <th>
+            <StyledTh>
                 {item.label}
-            </th>
+            </StyledTh>
         </>
     );
 };
@@ -48,17 +54,17 @@ export const TableRow = ({
 }) => {
     return (
         <>
-            <tr>
+            <TableBodyRow>
                 {tableheading.map((thItem, index) => {
                     return (
-                        <td key={index}>
+                        <StyledTd key={index}>
                             {
                                 item[thItem.value]
                             }
-                        </td>
+                        </StyledTd>
                     );
                 })}
-            </tr>
+            </TableBodyRow>
         </>
     );
 };
