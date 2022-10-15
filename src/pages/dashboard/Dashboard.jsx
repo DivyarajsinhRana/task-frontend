@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/pagination/Pagination";
+import Search from "../../components/search/Search";
 import Wrapper from "../../components/stylescomponents/wrapper/Wrapper";
 import Table from "../../components/table/Table";
 import { userTableHead } from "../../constant";
@@ -37,12 +39,19 @@ const Dashboard = () => {
             ? setCurrentPage(currentPage + 1)
             : setCurrentPage(currentPage);
     };
+
     return (
-        <Wrapper direction="column">
-            <Table
-                tableheading={userTableHead}
-                tabledata={currentItems}
-            />
+        <Wrapper direction="column" padding="70px">
+            <Search data={items} setData={setItems} />
+            {
+                isLoading ? <Loader /> : items.length === 0 ? "no recoe" : <>
+                    <Table
+                        tableheading={userTableHead}
+                        tabledata={currentItems}
+                    />
+                </>
+            }
+
             {items.length !== 0 && (
                 <Pagination
                     data={items}

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-padding-top:120px;
+padding-top:${({padding})=>padding ? {padding}: '120px'};
 display:flex;
 align-items:${({direction})=>direction==="column" ? "center" : 'unset'};
 flex-direction:${({direction})=>direction==="column" ? "column" : 'row'};
