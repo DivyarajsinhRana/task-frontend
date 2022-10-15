@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Dropdown from "../../components/dropdown/Dropdown";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/pagination/Pagination";
 import Search from "../../components/search/Search";
+import Button from "../../components/stylescomponents/button/Button";
+import Logout from "../../components/stylescomponents/button/Logout";
 import SearchFilterDiv from "../../components/stylescomponents/searchFilterDiv";
 import Wrapper from "../../components/stylescomponents/wrapper/Wrapper";
 import Table from "../../components/table/Table";
@@ -61,8 +64,14 @@ const Dashboard = () => {
         setItems(filtered)
         //  handleFilterCallback(item);
     };
+    const navigate = useNavigate();
     return (
         <Wrapper direction="column" padding="70px">
+            <Logout onClick={() => {
+                localStorage.removeItem('token')
+                localStorage.removeItem('user')
+                navigate('/')
+            }}>Logout</Logout>
             <SearchFilterDiv>
                 <Search data={items} setData={setItems} search={search} setSearch={setSearch} setTitle={setTitle} />
                 <Dropdown

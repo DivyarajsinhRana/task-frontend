@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import Box from "../../components/stylescomponents/box/Box";
 import Button from "../../components/stylescomponents/button/Button";
 import Form from "../../components/stylescomponents/form/Form";
@@ -13,6 +13,7 @@ import StyledSpan from "../../components/stylescomponents/styledspan/StyledSpan"
 import Title from "../../components/stylescomponents/title/Title";
 import WrapperImage from "../../components/stylescomponents/wrapperimage/WrapperImage";
 import { signUpFormValidators } from "../../formvalidators/signupformvalidators";
+import { encrypt } from "../../helpers/crypto";
 import useForm from "../../hooks/useForm";
 
 const Signup = () => {
@@ -20,8 +21,11 @@ const Signup = () => {
     const handleNavigate = (item) => {
         item && navigate(item);
     }
-    const handleRegister = () => {
-        handleNavigate('/login')
+    const handleRegister = (data) => {
+        const u = { ...data, password: encrypt(data.password) }
+        const user = JSON.stringify(u);
+        localStorage.setItem('user', user);
+        handleNavigate('/login');
     }
     const { handleSubmit, handleChange, data, errors } =
         useForm({

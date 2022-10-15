@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "../../components/stylescomponents/box/Box";
 import Button from "../../components/stylescomponents/button/Button";
@@ -13,6 +14,7 @@ import StyledSpan from "../../components/stylescomponents/styledspan/StyledSpan"
 import Title from "../../components/stylescomponents/title/Title";
 import WrapperImage from "../../components/stylescomponents/wrapperimage/WrapperImage";
 import { loginFormValidators } from "../../formvalidators/loginformvalidators";
+import { decrypt } from "../../helpers/crypto";
 import useForm from "../../hooks/useForm";
 
 const Login = () => {
@@ -20,7 +22,25 @@ const Login = () => {
     const handleNavigate = (item) => {
         item && navigate(item);
     }
+
     const handleLogin = () => {
+
+        const islogin = JSON.parse(localStorage.getItem('user'));
+        let email = islogin && islogin.email;
+        let password = islogin && decrypt(islogin.password);
+        console.log("data", data.password.toString(), data.email)
+        // console.log()
+        console.log('pass', password)
+        console.log('email', email)
+        console.log(data.password.toString() === password)
+        console.log(data.email === email)
+        if (data.password === password && data.email === email) {
+            localStorage.setItem('token', "jwttoken");
+            handleNavigate('/dashboard')
+        }
+        else {
+            alert('Username or Password invalid')
+        }
         handleNavigate('/dashboard')
     }
     const { handleSubmit, handleChange, data, errors } =
@@ -28,6 +48,13 @@ const Login = () => {
             validations: loginFormValidators,
             onSubmit: () => handleLogin(data),
         });
+
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('newuser')
+    }, [])
+
     return (
         <WrapperImage>
             <Box>
