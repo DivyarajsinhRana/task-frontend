@@ -44,11 +44,14 @@ html {
   --white-3:#F7F7F7;
   --blue-1: #0c1937;
   --blue-2:#3A4E60;
+  --blue-3:#0c1937E6;
+  --black-1:#E3E2E2; 
   --yellow-1:#FECD0B;
   --grey-1:#A7A7A7;
   --grey-2:#757575;
   --grey-3:#515151;
   --red-1:#F31C1C;
+
   --border: 1px solid #D8D9DB;
   --border-radius: 12px;
   --box-shadow: 10px 10px 80px 50px #1F3466;
