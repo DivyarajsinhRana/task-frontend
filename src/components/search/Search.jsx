@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 import SearchDiv from "../stylescomponents/search/SearchDiv";
 import SearchInput from "../stylescomponents/search/SearchInput";
 
-const Search = ({ data, setData }) => {
-    const [search, setSearch] = useState("");
+const Search = ({ data, setData, search, setSearch, setTitle }) => {
+
     const { users } = useSelector(state => state.users);
     const handleChange = (e) => {
         // console.log(e.target.value)
+        setTitle("Filter by Role")
         setSearch(e.target.value);
         const filtered = users.filter((entry) => {
             // console.log('searchitem', e.target.value);

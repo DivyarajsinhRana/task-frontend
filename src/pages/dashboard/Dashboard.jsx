@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Dropdown from "../../components/dropdown/Dropdown";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/pagination/Pagination";
 import Search from "../../components/search/Search";
+import SearchFilterDiv from "../../components/stylescomponents/searchFilterDiv";
 import Wrapper from "../../components/stylescomponents/wrapper/Wrapper";
 import Table from "../../components/table/Table";
-import { userTableHead } from "../../constant";
+import { dropDowndata, userTableHead } from "../../constant";
 import { fetchAllUsers } from "../../redux/features/users/userSlice";
 
 const Dashboard = () => {
@@ -40,11 +42,39 @@ const Dashboard = () => {
             : setCurrentPage(currentPage);
     };
 
+    const [title, setTitle] = useState("Filter by");
+    const [search, setSearch] = useState("");
+
+    const handleFilter = (item) => {
+        // console.log('item..??', item)
+        setSearch("")
+
+        setTitle(item);
+        const filtered = users.filter((entry) => {
+            // console.log('searchitem', e.target.value);
+            if (item === 'Filter by Role') {
+                return entry
+            } else {
+                return entry.role === item
+            }
+        })
+        setItems(filtered)
+        //  handleFilterCallback(item);
+    };
     return (
         <Wrapper direction="column" padding="70px">
-            <Search data={items} setData={setItems} />
+            <SearchFilterDiv>
+                <Search data={items} setData={setItems} search={search} setSearch={setSearch} setTitle={setTitle} />
+                <Dropdown
+                    // handleFilterCallback={handleFilterCallback}
+                    handleFilter={(item) => handleFilter(item)}
+                    title={title}
+                    data={dropDowndata}
+                />
+            </SearchFilterDiv>
+
             {
-                isLoading ? <Loader /> : items.length === 0 ? "no recoe" : <>
+                isLoading ? <Loader /> : items.length === 0 ? "no records found" : <>
                     <Table
                         tableheading={userTableHead}
                         tabledata={currentItems}

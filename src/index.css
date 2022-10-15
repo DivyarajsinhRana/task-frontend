@@ -56,4 +56,5 @@ html {
   --border: 1px solid #D8D9DB;
   --border-radius: 12px;
   --box-shadow: 10px 10px 80px 50px #1F3466;
+  --box-shadow-2:0px 4px 30px 10px rgba(0, 0, 0, 0.1);; 
 }

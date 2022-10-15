@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const SearchInput = styled.input`
-width: 95% ;
+width: 85% ;
 background: var(--white-1);
 border: var(--border);
 border-radius: 6px;
