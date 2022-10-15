@@ -1,6 +1,5 @@
 import { SearchIcon } from "../../svg-component";
 import color from "../../contant/color";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import SearchDiv from "../stylescomponents/search/SearchDiv";
 import SearchInput from "../stylescomponents/search/SearchInput";

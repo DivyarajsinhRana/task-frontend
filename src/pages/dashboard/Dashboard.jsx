@@ -5,7 +5,6 @@ import Dropdown from "../../components/dropdown/Dropdown";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/pagination/Pagination";
 import Search from "../../components/search/Search";
-import Button from "../../components/stylescomponents/button/Button";
 import Logout from "../../components/stylescomponents/button/Logout";
 import SearchFilterDiv from "../../components/stylescomponents/searchFilterDiv";
 import Wrapper from "../../components/stylescomponents/wrapper/Wrapper";

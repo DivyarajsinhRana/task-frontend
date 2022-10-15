@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "../../components/stylescomponents/box/Box";
 import Button from "../../components/stylescomponents/button/Button";
@@ -28,12 +27,6 @@ const Login = () => {
         const islogin = JSON.parse(localStorage.getItem('user'));
         let email = islogin && islogin.email;
         let password = islogin && decrypt(islogin.password);
-        console.log("data", data.password.toString(), data.email)
-        // console.log()
-        console.log('pass', password)
-        console.log('email', email)
-        console.log(data.password.toString() === password)
-        console.log(data.email === email)
         if (data.password === password && data.email === email) {
             localStorage.setItem('token', "jwttoken");
             handleNavigate('/dashboard')
@@ -49,11 +42,7 @@ const Login = () => {
             onSubmit: () => handleLogin(data),
         });
 
-    const [user, setUser] = useState();
 
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem('newuser')
-    }, [])
 
     return (
         <WrapperImage>

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "../stylescomponents/button/Button";
 import PaginationPagesWrapper from "../stylescomponents/paginationwrapper/paginationPagesWrapper";
 import PaginationWrapper from "../stylescomponents/paginationwrapper/paginationWrapper";
 import PageSpan from "./PageSpan";
