@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom"
+import Button from "../../components/button/Button";
+import Title from "../../components/title/Title";
+import Wrapper from "../../components/wrapper/Wrapper";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -6,10 +9,10 @@ const Home = () => {
         item && navigate(item);
     }
     return (
-        <div>
-            Welcome to the our site please login to continue
-            <button onClick={() => { handleNavigate('/login') }} >Login</button>
-        </div>
+        <Wrapper direction="column">
+            <Title>Welcome to the our site please login to continue...</Title>
+            <Button onClick={() => { handleNavigate('/login') }} >Login</Button>
+        </Wrapper>
     )
 }
 export default Home;

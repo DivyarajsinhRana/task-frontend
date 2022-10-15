@@ -1,7 +1,9 @@
+import TableV2 from "../../components/table/Table";
+
 const Dashboard = () => {
     return (
         <div>
-            Dashboard
+            dashboard
         </div>
     )
 }
