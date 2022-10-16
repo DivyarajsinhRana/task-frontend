@@ -8,6 +8,7 @@ import AuthRoutes from "./AuthRoute";
 
 const RootRoute = () => {
     const { token } = useToken();
+    // console.log('token', token);
     return (
         <Routes>
             <Route path="/" element={<Home />} />

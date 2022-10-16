@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "styled-components";
 import Dropdown from "../../components/dropdown/Dropdown";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/pagination/Pagination";
@@ -10,6 +11,7 @@ import SearchFilterDiv from "../../components/stylescomponents/searchFilterDiv";
 import Wrapper from "../../components/stylescomponents/wrapper/Wrapper";
 import Table from "../../components/table/Table";
 import { dropDowndata, userTableHead } from "../../constant";
+import useToken from "../../hooks/useToken";
 import { fetchAllUsers } from "../../redux/features/users/userSlice";
 
 const Dashboard = () => {
@@ -27,7 +29,7 @@ const Dashboard = () => {
         dispatch(fetchAllUsers());
     }, [dispatch])
     useEffect(() => {
-        setItems(users);
+        users.length > 0 && setItems(users);
     }, [users])
     const handlePaginate = (item) => {
         setCurrentPage(item);
@@ -64,9 +66,11 @@ const Dashboard = () => {
         //  handleFilterCallback(item);
     };
     const navigate = useNavigate();
+    const { setToken } = useToken();
     return (
         <Wrapper direction="column" padding="70px">
             <Logout onClick={() => {
+                setToken(null);
                 localStorage.removeItem('token')
                 localStorage.removeItem('user')
                 navigate('/')

@@ -21,7 +21,7 @@ import { creatUser } from "../../redux/features/resgister/registerSlice";
 const Signup = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const state = useSelector(state => state.register)
+    // const state = useSelector(state => state.register)
     // console.log('state', state)
     const handleNavigate = (item) => {
         item && navigate(item);

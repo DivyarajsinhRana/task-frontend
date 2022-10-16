@@ -57,10 +57,6 @@ const Login = () => {
             onSubmit: () => handleLogin(data),
         });
 
-    useEffect(() => {
-        dispatch(getRegisterUsersList());
-        return () => setErrors({});
-    }, []);
 
     return (
         <WrapperImage>

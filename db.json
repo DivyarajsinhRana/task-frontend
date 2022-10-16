@@ -1,6 +1,12 @@
 {
   "register": [
-    
+    {
+      "firstname": "divyaraj",
+      "lastname": "rana",
+      "email": "dc@gmail.com",
+      "password": "AwCrOdiYFnwjq6eHyj5dFQ==",
+      "id": 3
+    }
   ],
   "users": [
     {
