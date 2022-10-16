@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Box from "../../components/stylescomponents/box/Box";
@@ -16,24 +17,40 @@ import WrapperImage from "../../components/stylescomponents/wrapperimage/Wrapper
 import { signUpFormValidators } from "../../formvalidators/signupformvalidators";
 import { encrypt } from "../../helpers/crypto";
 import useForm from "../../hooks/useForm";
-import { creatUser } from "../../redux/features/resgister/registerSlice";
+import { creatUser, getRegisterUsersList } from "../../redux/features/resgister/registerSlice";
 
 const Signup = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const state = useSelector(state => state.register)
+
+    useEffect(() => {
+        dispatch(getRegisterUsersList());
+    }, []);
+    const { allUsers } = useSelector(state => state.register)
     // console.log('state', state)
     const handleNavigate = (item) => {
         item && navigate(item);
     }
     const handleRegister = (data) => {
-        const u = { ...data, password: encrypt(data.password) }
+        const payload = { ...data, password: encrypt(data.password) }
         // const user = JSON.stringify(u);
         // localStorage.setItem('user', user);
-        dispatch(creatUser({ ...u, id: Math.floor((Math.random() * 100) + 1) }));
-        handleNavigate('/login');
+        setErrors({});
+        const duplicateUser = allUsers.length > 0 && allUsers.filter((item) => {
+            return (item.email === data.email)
+        })
+        console.log("duplicate", duplicateUser);
+        if (duplicateUser.length === 0) {
+            dispatch(creatUser({ ...payload, id: Math.floor((Math.random() * 100) + 1) }));
+            handleNavigate('/login');
+            // window.location.reload();
+            // dispatch(getRegisterUsersList());
+        }
+        else {
+            setErrors({ ...errors, email: "This email id is alreadt exist" })
+        }
     }
-    const { handleSubmit, handleChange, data, errors } =
+    const { handleSubmit, handleChange, data, errors, setErrors } =
         useForm({
             validations: signUpFormValidators,
             onSubmit: () => handleRegister(data),

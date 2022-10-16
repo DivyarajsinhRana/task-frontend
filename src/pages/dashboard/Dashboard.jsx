@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "styled-components";
 import Dropdown from "../../components/dropdown/Dropdown";
 import Loader from "../../components/Loader/Loader";
 import Pagination from "../../components/pagination/Pagination";

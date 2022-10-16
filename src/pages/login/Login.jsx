@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Box from "../../components/stylescomponents/box/Box";
@@ -26,17 +26,13 @@ const Login = () => {
         dispatch(getRegisterUsersList());
     }, []);
     const { allUsers } = useSelector(state => state.register);
-    // console.log('user', allUsers);
     const handleNavigate = (item) => {
         item && navigate(item);
     }
 
     const handleLogin = () => {
-        dispatch(getRegisterUsersList());
-        const islogin = JSON.parse(localStorage.getItem('user'));
-        let email = islogin && islogin.email;
-        let password = islogin && decrypt(islogin.password);
-
+        // dispatch(getRegisterUsersList());
+        setErrors({});
         const existUser = allUsers.filter((item) => {
             return (data.email === item.email)
         })

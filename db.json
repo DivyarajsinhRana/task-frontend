@@ -6,6 +6,27 @@
       "email": "dc@gmail.com",
       "password": "AwCrOdiYFnwjq6eHyj5dFQ==",
       "id": 3
+    },
+    {
+      "firstname": "yuvaraj",
+      "lastname": "pawar",
+      "email": "uv@gmail.com",
+      "password": "EpaT8v7MrnPdK6Nx4ufbkQ==",
+      "id": 2
+    },
+    {
+      "firstname": "vishwa",
+      "lastname": "raj",
+      "email": "vr@gmail.com",
+      "password": "AwCrOdiYFnwjq6eHyj5dFQ==",
+      "id": 74
+    },
+    {
+      "firstname": "meet",
+      "lastname": "raval",
+      "email": "meet@gmail.com",
+      "password": "WNWabGVctOyyQFnVyMvEkg==",
+      "id": 37
     }
   ],
   "users": [
