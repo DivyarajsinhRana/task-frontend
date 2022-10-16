@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Box from "../../components/stylescomponents/box/Box";
 import Button from "../../components/stylescomponents/button/Button";
@@ -15,16 +16,21 @@ import WrapperImage from "../../components/stylescomponents/wrapperimage/Wrapper
 import { signUpFormValidators } from "../../formvalidators/signupformvalidators";
 import { encrypt } from "../../helpers/crypto";
 import useForm from "../../hooks/useForm";
+import { creatUser } from "../../redux/features/resgister/registerSlice";
 
 const Signup = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const state = useSelector(state => state.register)
+    // console.log('state', state)
     const handleNavigate = (item) => {
         item && navigate(item);
     }
     const handleRegister = (data) => {
         const u = { ...data, password: encrypt(data.password) }
-        const user = JSON.stringify(u);
-        localStorage.setItem('user', user);
+        // const user = JSON.stringify(u);
+        // localStorage.setItem('user', user);
+        dispatch(creatUser({ ...u, id: Math.floor((Math.random() * 100) + 1) }));
         handleNavigate('/login');
     }
     const { handleSubmit, handleChange, data, errors } =

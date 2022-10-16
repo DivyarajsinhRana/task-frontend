@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Box from "../../components/stylescomponents/box/Box";
 import Button from "../../components/stylescomponents/button/Button";
@@ -15,34 +17,50 @@ import WrapperImage from "../../components/stylescomponents/wrapperimage/Wrapper
 import { loginFormValidators } from "../../formvalidators/loginformvalidators";
 import { decrypt } from "../../helpers/crypto";
 import useForm from "../../hooks/useForm";
+import { getRegisterUsersList } from "../../redux/features/resgister/registerSlice";
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getRegisterUsersList());
+    }, []);
+    const { allUsers } = useSelector(state => state.register);
+    // console.log('user', allUsers);
     const handleNavigate = (item) => {
         item && navigate(item);
     }
 
     const handleLogin = () => {
-
+        dispatch(getRegisterUsersList());
         const islogin = JSON.parse(localStorage.getItem('user'));
         let email = islogin && islogin.email;
         let password = islogin && decrypt(islogin.password);
-        if (data.password === password && data.email === email) {
+
+        const existUser = allUsers.filter((item) => {
+            return (data.email === item.email)
+        })
+        if (existUser.length === 0) {
+            setErrors({ ...errors, email: "Please enter valid email" })
+        }
+        else if (data.password === decrypt(existUser[0].password)) {
             localStorage.setItem('token', "jwttoken");
             handleNavigate('/dashboard')
         }
         else {
-            alert('Username or Password invalid')
+            setErrors({ ...errors, password: 'password is incorrect' })
         }
-        handleNavigate('/dashboard')
     }
-    const { handleSubmit, handleChange, data, errors } =
+    const { handleSubmit, handleChange, data, errors, setErrors } =
         useForm({
             validations: loginFormValidators,
             onSubmit: () => handleLogin(data),
         });
 
-
+    useEffect(() => {
+        dispatch(getRegisterUsersList());
+        return () => setErrors({});
+    }, []);
 
     return (
         <WrapperImage>
