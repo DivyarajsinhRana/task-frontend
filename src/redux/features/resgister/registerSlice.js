@@ -8,8 +8,12 @@ export const creatUser = createAsyncThunk(
       try {
         const res = await registerUser(payload);
         // console.log('user create',res);
+        console.log('responsr',res);
+
         return res.data;
       } catch (error) {
+        console.log('error',error)
+
         return rejectWithValue(error.message);
       }
     }
@@ -20,7 +24,6 @@ export const getRegisterUsersList = createAsyncThunk(
         // console.log('payload',payload)
       try {
         const res = await registeredUsersList();
-        // console.log('user create',res);
         return res.data;
       } catch (error) {
         return rejectWithValue(error.message);
@@ -41,13 +44,17 @@ export const getRegisterUsersList = createAsyncThunk(
     extraReducers: {
       [creatUser.pending]: (state, action) => {
         state.isLoading = true;
+        state.error = null
       },
       [creatUser.fulfilled]: (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
+        state.error = null
       },
       [creatUser.rejected]: (state, error) => {
         state.isLoading = false;
+        // console.log('error',error)
+        state.error = error
       },
       // all users
       [getRegisterUsersList.pending]: (state, action) => {

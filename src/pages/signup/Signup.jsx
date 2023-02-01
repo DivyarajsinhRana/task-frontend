@@ -36,19 +36,20 @@ const Signup = () => {
         // const user = JSON.stringify(u);
         // localStorage.setItem('user', user);
         setErrors({});
+        dispatch(creatUser(payload));
         const duplicateUser = allUsers.length > 0 && allUsers.filter((item) => {
             return (item.email === data.email)
         })
-        console.log("duplicate", duplicateUser);
-        if (duplicateUser.length === 0) {
-            dispatch(creatUser({ ...payload, id: Math.floor((Math.random() * 100) + 1) }));
-            handleNavigate('/login');
-            // window.location.reload();
-            // dispatch(getRegisterUsersList());
-        }
-        else {
-            setErrors({ ...errors, email: "This email id is alreadt exist" })
-        }
+        // console.log("duplicate", duplicateUser);
+        // if (duplicateUser.length === 0) {
+        //     dispatch(creatUser({ ...payload, id: Math.floor((Math.random() * 100) + 1) }));
+        //     handleNavigate('/login');
+        //     // window.location.reload();
+        //     // dispatch(getRegisterUsersList());
+        // }
+        // else {
+        //     setErrors({ ...errors, email: "This email id is alreadt exist" })
+        // }
     }
     const { handleSubmit, handleChange, data, errors, setErrors } =
         useForm({

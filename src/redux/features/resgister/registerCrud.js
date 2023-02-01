@@ -5,5 +5,5 @@ export const registerUser = (payload) => {
     return axios.post(`${config.default.createUser}`,payload);
   };
 export const registeredUsersList = () => {
-    return axios.get(`${config.default.createUser}`);
+    return axios.get(`${config.default.getAllRegisteredUser}`);
   };
